@@ -1,6 +1,6 @@
 package ru.lab.characters;
 
-import ru.lab.objects.BetType;
+
 import ru.lab.objects.Money;
 
 public class GrandMother extends Persona implements Player{
