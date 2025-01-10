@@ -17,9 +17,9 @@ public class Main {
         System.out.println(frenchLady);
         YoungMan youngMan = new YoungMan("Unkown", "Unknown", new Money(5000));
         System.out.println(youngMan);
-        grandMother.placeBet(BetType.PAIR, new Money(500));
-        frenchLady.placeBet(BetType.IMPAIR, new Money(100));
-        youngMan.placeBet(BetType.MANQUE, new Money(170));
+        grandMother.placeBet(BetType.PAIR, new Money(1500));
+        frenchLady.placeBet(BetType.IMPAIR, new Money(130));
+        youngMan.placeBet(BetType.MANQUE, new Money(1700));
         System.out.println("Player.betArrayList before: " + Player.betArrayList);
         Croupier croupier = new Croupier("Vlad", "Jewish", "glavniy");
         croupier.acceptBets(Player.betArrayList);
