@@ -2,9 +2,9 @@ package ru.lab.characters;
 
 import ru.lab.objects.Doors;
 
-public class Swiss extends CasinoWorker {
+public class Doorman extends CasinoWorker {
 
-    public Swiss(String name, String nationality, String post) {
+    public Doorman(String name, String nationality, String post) {
         super(name, nationality, post);
     }
 

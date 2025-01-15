@@ -6,15 +6,15 @@ import ru.lab.objects.*;
 public class Main {
     public static void main(String[] args) {
 
-        Swiss swiss = new Swiss("Gena", "Ukrainian", "Swiss");
-        System.out.println(swiss);
+        Doorman doorman = new Doorman("Gena", "Швейцарец", "Swiss");
+        System.out.println(doorman);
         Doors doors = new Doors(true);
         System.out.println(doors);
-        swiss.openDoors(doors);
+        doorman.openDoors(doors);
         System.out.println(doors);
-        GrandMother grandMother = new GrandMother("Russian", "Антонида Васильевна", new Money(10000));
+        GrandMother grandMother = new GrandMother("Русская", "Антонида Васильевна", new Money(10000));
         System.out.println(grandMother);
-        FrenchLady frenchLady = new FrenchLady("French", "Lena", new Money(3000));
+        FrenchLady frenchLady = new FrenchLady("Unknown", new Money(3000));
         System.out.println(frenchLady);
         YoungMan youngMan = new YoungMan("Unkown", "Unknown", new Money(5000));
         System.out.println(youngMan);
