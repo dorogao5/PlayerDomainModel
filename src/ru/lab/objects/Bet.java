@@ -9,7 +9,7 @@ public class Bet {
     private final BetType type;
     private final Money amountOfMoney;
 
-    public Bet( BetType type, Money amountOfMoney) {
+    public Bet(BetType type, Money amountOfMoney) {
         this.type = type;
         this.amountOfMoney = amountOfMoney;
     }

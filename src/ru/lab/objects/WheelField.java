@@ -42,6 +42,7 @@ public enum WheelField {
     private final int number;
     private final String color;
     private final String parity;
+
     WheelField(int number, String color, String parity) {
         this.number = number;
         this.color = color;

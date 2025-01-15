@@ -16,6 +16,7 @@ public class Roulette {
         int randomIndex = random.nextInt(fields.size());
         return fields.get(randomIndex);
     }
+
     public void spinAnimation() {
         try {
             int spinRounds = random.nextInt(10) + 20; // Количество вращений
@@ -30,6 +31,7 @@ public class Roulette {
             System.err.println("Ошибка анимации рулетки: " + e.getMessage());
         }
     }
+
     public HashMap<Persona, Integer> calcResult(WheelField resultWheelField, HashMap<Persona, Bet> finalBetHashMap) {
         HashMap<Persona, Integer> resultHashMap = new HashMap<>();
 

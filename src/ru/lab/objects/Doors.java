@@ -2,7 +2,8 @@ package ru.lab.objects;
 
 public class Doors {
     private boolean isLocked;
-    public Doors(boolean isLocked){
+
+    public Doors(boolean isLocked) {
         this.isLocked = isLocked;
     }
 

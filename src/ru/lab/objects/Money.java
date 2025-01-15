@@ -15,10 +15,9 @@ public class Money {
     }
 
     public void changeAmount(int value, Persona user) throws IllegalAccessException {
-        if (user instanceof Croupier){
+        if (user instanceof Croupier) {
             this.amount += value;
-        }
-        else{
+        } else {
             throw new IllegalAccessException("Только Croupier может изменять количество денег.");
         }
     }

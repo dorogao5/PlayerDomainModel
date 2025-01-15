@@ -8,6 +8,7 @@ public abstract class Persona {
     private String nationality;
     private String name;
     private Money money;
+
     public Persona(String nationality, String name, Money money) {
         this.nationality = nationality;
         this.name = name;

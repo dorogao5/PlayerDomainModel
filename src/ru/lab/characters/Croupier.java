@@ -1,9 +1,9 @@
 package ru.lab.characters;
 
+import ru.lab.exceptions.ImpossibleToStartGameException;
 import ru.lab.objects.*;
 
 import java.util.HashMap;
-import java.util.*;
 
 public class Croupier extends CasinoWorker {
     private WheelField resultWheelField;
@@ -13,6 +13,7 @@ public class Croupier extends CasinoWorker {
     public Croupier(String nationality, String name, String post) {
         super(name, nationality, post);
     }
+
     public void acceptBets(HashMap<Persona, Bet> betHashMap) {
         this.finalBetHashMap = new HashMap<>();
         betsAcceptedSuccessfully = true;
@@ -23,7 +24,7 @@ public class Croupier extends CasinoWorker {
             int playerBalance = persona.getMoney().getAmount();
 
             try {
-                if (betAmount > playerBalance) {
+                if (betAmount > playerBalance || betAmount < 0) {
                     betsAcceptedSuccessfully = false;
                     throw new IllegalArgumentException("Ошибка: Игрок " + persona.getName() + " не имеет достаточно средств для ставки. Доступно: " + playerBalance + ", требуется: " + betAmount);
                 }
@@ -31,51 +32,60 @@ public class Croupier extends CasinoWorker {
                 this.finalBetHashMap.put(persona, copiedBet);
                 System.out.println("Ставка игрока " + persona.getName() + " принята: " + copiedBet);
             } catch (IllegalArgumentException e) {
-                    System.err.println("Ошибка при принятии ставки игрока " + persona.getName() + ": " + e.getMessage());
+                System.err.println("Ошибка при принятии ставки игрока " + persona.getName() + ": " + e.getMessage());
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                betsAcceptedSuccessfully = true;
             }
         }
         betHashMap.clear();
     }
 
     public void spinWheel(Roulette roulette) {
-        if (betsAcceptedSuccessfully) {
-        this.resultWheelField = roulette.generateResult();
-        System.out.println("\nКрупье крутит рулетку...");
-        roulette.spinAnimation();
-        System.out.println("\nШарик остановился!");
-        System.out.println("Результат: Сектор " + resultWheelField.getNumber());}
-        else {
+        while (!betsAcceptedSuccessfully) {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        try {
+            if (finalBetHashMap.isEmpty()) {
+                throw new ImpossibleToStartGameException();
             }
             this.resultWheelField = roulette.generateResult();
             System.out.println("\nКрупье крутит рулетку...");
             roulette.spinAnimation();
             System.out.println("\nШарик остановился!");
             System.out.println("Результат: Сектор " + resultWheelField.getNumber());
+        } catch (ImpossibleToStartGameException e) {
+            System.err.println(e.getMessage());
         }
+
     }
 
     public void spinWheel(Roulette roulette, WheelField wheelField) {
-        if (betsAcceptedSuccessfully) {
-            this.resultWheelField = wheelField;
-            System.out.println("\nКрупье крутит рулетку...");
-            roulette.spinAnimation();
-            System.out.println("\nШарик остановился!");
-            System.out.println("Результат: Сектор " + resultWheelField.getNumber());}
-        else {
+        while (!betsAcceptedSuccessfully) {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        try {
+            if (finalBetHashMap.isEmpty()) {
+                throw new ImpossibleToStartGameException();
             }
             this.resultWheelField = wheelField;
             System.out.println("\nКрупье крутит рулетку...");
             roulette.spinAnimation();
             System.out.println("\nШарик остановился!");
             System.out.println("Результат: Сектор " + resultWheelField.getNumber());
+        } catch (ImpossibleToStartGameException e) {
+            System.err.println(e.getMessage());
         }
     }
 
