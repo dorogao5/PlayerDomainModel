@@ -21,7 +21,7 @@ public class Croupier extends CasinoWorker {
         for (HashMap.Entry<Persona, Bet> entry : betHashMap.entrySet()) {
             Persona persona = entry.getKey();
             Bet originalBet = entry.getValue();
-            int betAmount = originalBet.getAmountOfMoney().getAmount();
+            int betAmount = originalBet.amountOfMoney().getAmount();
             int playerBalance = persona.getMoney().getAmount();
 
             try {
@@ -29,7 +29,7 @@ public class Croupier extends CasinoWorker {
                     betsAcceptedSuccessfully = false;
                     throw new IllegalArgumentException("Ошибка: Игрок " + persona.getName() + " не имеет достаточно средств для ставки. Доступно: " + playerBalance + ", требуется: " + betAmount);
                 }
-                Bet copiedBet = new Bet(originalBet.getType(), new Money(betAmount));
+                Bet copiedBet = new Bet(originalBet.type(), new Money(betAmount));
                 this.finalBetHashMap.put(persona, copiedBet);
                 System.out.println("Ставка игрока " + persona.getName() + " принята: " + copiedBet);
             } catch (IllegalArgumentException e) {

@@ -38,15 +38,15 @@ public class Roulette {
         for (Map.Entry<Persona, Bet> entry : finalBetHashMap.entrySet()) {
             Persona player = entry.getKey();
             Bet bet = entry.getValue();
-            BetType betType = bet.getType();
-            int betAmount = bet.getAmountOfMoney().getAmount();
+            BetType betType = bet.type();
+            int betAmount = bet.amountOfMoney().getAmount();
 
             int winnings = 0; // Выигрыш или проигрыш игрока
 
             switch (betType) {
                 case ZERO:
                     if (resultWheelField == WheelField.ZERO) {
-                        winnings = betAmount * 35; // Коэффициент для ставки на 0
+                        winnings = betAmount * 34; // Коэффициент для ставки на 0
                     } else {
                         winnings = -betAmount;
                     }
@@ -54,7 +54,7 @@ public class Roulette {
 
                 case ROUGE: // Ставка на красное
                     if ("RED".equals(resultWheelField.getColor())) {
-                        winnings = betAmount * 2;
+                        winnings = betAmount;
                     } else {
                         winnings = -betAmount;
                     }
@@ -62,7 +62,7 @@ public class Roulette {
 
                 case NOIR: // Ставка на черное
                     if ("BLACK".equals(resultWheelField.getColor())) {
-                        winnings = betAmount * 2;
+                        winnings = betAmount;
                     } else {
                         winnings = -betAmount;
                     }
@@ -70,7 +70,7 @@ public class Roulette {
 
                 case PAIR: // Ставка на четное
                     if ("EVEN".equals(resultWheelField.getParity())) {
-                        winnings = betAmount * 2;
+                        winnings = betAmount;
                     } else {
                         winnings = -betAmount;
                     }
@@ -78,7 +78,7 @@ public class Roulette {
 
                 case IMPAIR: // Ставка на нечетное
                     if ("ODD".equals(resultWheelField.getParity())) {
-                        winnings = betAmount * 2;
+                        winnings = betAmount;
                     } else {
                         winnings = -betAmount;
                     }
@@ -86,7 +86,7 @@ public class Roulette {
 
                 case MANQUE: // Ставка на 1-18
                     if (resultWheelField.getNumber() >= 1 && resultWheelField.getNumber() <= 18) {
-                        winnings = betAmount * 2;
+                        winnings = betAmount;
                     } else {
                         winnings = -betAmount;
                     }
@@ -94,7 +94,7 @@ public class Roulette {
 
                 case PASSE: // Ставка на 19-36
                     if (resultWheelField.getNumber() >= 19 && resultWheelField.getNumber() <= 36) {
-                        winnings = betAmount * 2;
+                        winnings = betAmount;
                     } else {
                         winnings = -betAmount;
                     }

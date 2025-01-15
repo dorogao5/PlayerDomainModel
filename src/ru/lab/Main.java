@@ -1,7 +1,6 @@
 package ru.lab;
 
 import ru.lab.characters.*;
-import ru.lab.exceptions.ImpossibleToStartGameException;
 import ru.lab.objects.*;
 
 import java.util.ArrayList;

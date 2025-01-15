@@ -2,24 +2,7 @@ package ru.lab.objects;
 
 import java.util.Objects;
 
-public class Bet {
-
-    private final BetType type;
-    private final Money amountOfMoney;
-
-    public Bet(BetType type, Money amountOfMoney) {
-        this.type = type;
-        this.amountOfMoney = amountOfMoney;
-    }
-
-
-    public BetType getType() {
-        return type;
-    }
-
-    public Money getAmountOfMoney() {
-        return amountOfMoney;
-    }
+public record Bet(BetType type, Money amountOfMoney) {
 
     @Override
     public String toString() {
@@ -35,8 +18,4 @@ public class Bet {
         return type == bet.type && Objects.equals(amountOfMoney, bet.amountOfMoney);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(type, amountOfMoney);
-    }
 }
