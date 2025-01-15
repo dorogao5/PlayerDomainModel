@@ -9,6 +9,7 @@ public class Croupier extends CasinoWorker {
     private WheelField resultWheelField;
     private HashMap<Persona, Bet> finalBetHashMap;
     private boolean betsAcceptedSuccessfully;
+    private boolean gameStarted = true;
 
     public Croupier(String nationality, String name, String post) {
         super(name, nationality, post);
@@ -54,15 +55,20 @@ public class Croupier extends CasinoWorker {
         }
         try {
             if (finalBetHashMap.isEmpty()) {
+                gameStarted = false;
                 throw new ImpossibleToStartGameException();
+
+            }else{
+                gameStarted = true;
+                this.resultWheelField = roulette.generateResult();
+                System.out.println("\nКрупье крутит рулетку...");
+                roulette.spinAnimation();
+                System.out.println("\nШарик остановился!");
+                System.out.println("Результат: Сектор " + resultWheelField.getNumber());
             }
-            this.resultWheelField = roulette.generateResult();
-            System.out.println("\nКрупье крутит рулетку...");
-            roulette.spinAnimation();
-            System.out.println("\nШарик остановился!");
-            System.out.println("Результат: Сектор " + resultWheelField.getNumber());
+
         } catch (ImpossibleToStartGameException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
     }
@@ -77,23 +83,37 @@ public class Croupier extends CasinoWorker {
         }
         try {
             if (finalBetHashMap.isEmpty()) {
+                gameStarted = false;
                 throw new ImpossibleToStartGameException();
+
+            }else{
+                gameStarted = true;
+                this.resultWheelField = wheelField;
+                System.out.println("\nКрупье крутит рулетку...");
+                roulette.spinAnimation();
+                System.out.println("\nШарик остановился!");
+                System.out.println("Результат: Сектор " + resultWheelField.getNumber());
             }
-            this.resultWheelField = wheelField;
-            System.out.println("\nКрупье крутит рулетку...");
-            roulette.spinAnimation();
-            System.out.println("\nШарик остановился!");
-            System.out.println("Результат: Сектор " + resultWheelField.getNumber());
+
         } catch (ImpossibleToStartGameException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
     public void announceResult() {
+        if (!gameStarted) {
+            System.out.println("Игра не была начата. Результаты отсутствуют.");
+            return;
+        }
         System.out.println(resultWheelField.toString());
     }
 
     public void payOut(Roulette roulette) {
+        if (!gameStarted) {
+            System.out.println("Игра не была начата. Выплаты отменены.");
+            return;
+        }
+
         HashMap<Persona, Integer> resultHashMap = roulette.calcResult(resultWheelField, finalBetHashMap);
         finalBetHashMap.clear();
         for (HashMap.Entry<Persona, Integer> entry : resultHashMap.entrySet()) {

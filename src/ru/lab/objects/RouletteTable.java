@@ -1,19 +1,24 @@
 package ru.lab.objects;
 
 public class RouletteTable extends GameTable {
-    private final int wheelNumber;
 
-    public RouletteTable(String tableName, int maxPlayers, int wheelNumber) {
+    Roulette roulette;
+
+    public RouletteTable(String tableName, int maxPlayers, Roulette roulette) {
         super(tableName, maxPlayers);
-        this.wheelNumber = wheelNumber;
+        this.roulette = roulette;
     }
 
-    public int getWheelNumber() {
-        return wheelNumber;
+    public Roulette getRoulette() {
+        return roulette;
+    }
+
+    public void setRoulette(Roulette roulette) {
+        this.roulette = roulette;
     }
 
     @Override
     public void describe() {
-        System.out.println("Roulette Table: " + tableName + " with wheel number: " + wheelNumber);
+        System.out.println("Roulette Table: " + tableName);
     }
 }

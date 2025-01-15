@@ -3,7 +3,7 @@ package ru.lab.objects;
 import java.util.ArrayList;
 
 public class GamblingHall extends Hall {
-    private ArrayList<GameTable> tables;
+    private final ArrayList<GameTable> tables;
 
     public GamblingHall(String name, String description) {
         super(name, description);

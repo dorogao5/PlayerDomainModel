@@ -15,10 +15,10 @@ public class Valet extends CasinoWorker {
         for (Seats seat : seatsArrayList) {
             if (!seat.isOccupied()) {
                 seat.setOccupied(true);
-                System.out.println(persona.getName() + " has been seated at a seat with distance: " + seat.getDistanceToCroupier());
+                System.out.println(persona.getName() + " был(а) посажен(а) " + seat.getDistanceToCroupier());
                 return;
             }
         }
-        System.out.println("No available seats for " + persona.getName());
+        System.out.println("Нет свободных мест для " + persona.getName());
     }
 }
