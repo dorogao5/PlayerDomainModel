@@ -16,7 +16,20 @@ public class Roulette {
         int randomIndex = random.nextInt(fields.size());
         return fields.get(randomIndex);
     }
-
+    public void spinAnimation() {
+        try {
+            int spinRounds = random.nextInt(10) + 20; // Количество вращений
+            for (int i = 0; i < spinRounds; i++) {
+                WheelField currentField = fields.get(random.nextInt(fields.size()));
+                System.out.print("\rРулетка: Сектор " + currentField.getNumber() + " ");
+                Thread.sleep(125 + i * 10L); // Плавное замедление
+            }
+            System.out.print("\r                        \r");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Ошибка анимации рулетки: " + e.getMessage());
+        }
+    }
     public HashMap<Persona, Integer> calcResult(WheelField resultWheelField, HashMap<Persona, Bet> finalBetHashMap) {
         HashMap<Persona, Integer> resultHashMap = new HashMap<>();
 
