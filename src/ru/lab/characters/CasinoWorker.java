@@ -20,14 +20,6 @@ public abstract class CasinoWorker extends Persona {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        CasinoWorker that = (CasinoWorker) o;
-        return Objects.equals(getPost(), that.getPost()) && Objects.equals(getNationality(), that.getNationality()) && Objects.equals(getName(), that.getName());
-    }
-
     public String getPost() {
         return post;
     }
@@ -36,4 +28,15 @@ public abstract class CasinoWorker extends Persona {
         this.post = post;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CasinoWorker that)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(post, that.post);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), post);
+    }
 }

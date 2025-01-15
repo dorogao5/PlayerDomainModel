@@ -1,7 +1,6 @@
 package ru.lab.characters;
 
 import ru.lab.objects.Seats;
-import ru.lab.objects.GameTable;
 
 import java.util.ArrayList;
 

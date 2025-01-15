@@ -18,4 +18,12 @@ public abstract class Place {
     }
 
     public abstract void visit();
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

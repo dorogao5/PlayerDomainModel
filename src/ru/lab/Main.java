@@ -73,7 +73,17 @@ public class Main {
         croupier.spinWheel(roulette, WheelField.ZERO);
         croupier.announceResult();
         croupier.payOut(roulette);
+        // Третий раунд ставок
+        grandMother.placeBet(BetType.ZERO, new Money(5000));
+        frenchLady.placeBet(BetType.NOIR, new Money(2300));
+        youngMan.placeBet(BetType.PASSE, new Money(3400));
+        System.out.println("Список ставок игроков: " + Player.betArrayList);
 
+        croupier.acceptBets(Player.betArrayList);
+        System.out.println("Список принятых ставок: " + croupier.getFinalBetHashMap());
+        croupier.spinWheel(roulette, WheelField.ZERO);
+        croupier.announceResult();
+        croupier.payOut(roulette);
 
 
     }

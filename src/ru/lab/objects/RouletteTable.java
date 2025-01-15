@@ -21,4 +21,5 @@ public class RouletteTable extends GameTable {
     public void describe() {
         System.out.println("Roulette Table: " + tableName);
     }
+
 }

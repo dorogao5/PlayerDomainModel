@@ -1,7 +1,5 @@
 package ru.lab.objects;
 
-import ru.lab.characters.Persona;
-
 import java.util.Objects;
 
 public class Bet {
